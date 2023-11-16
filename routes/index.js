@@ -29,13 +29,18 @@ router.use(passport.session());
 router.get("/", function (req, res, next) {
 res.render("index");
 });
+router.get("/login", function (req, res, next) {
+res.render("login");
+});
+
 
 
 router.post('/register', async function(req, res, next) {
   var userdata = new userModel({
     username : req.body.username,
     email : req.body.email,
-    fullname:req.body.fullname
+    fullname:req.body.fullname,
+    password:req.body.password
   });
   userModel.register(userdata,req.body.password)
   .then(function(registereduser){
